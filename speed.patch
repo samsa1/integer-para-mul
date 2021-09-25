@@ -1,0 +1,27 @@
+--- time.c.orig	2021-06-16 09:56:39.437197506 +0200
++++ time.c	2021-06-16 09:56:54.133433149 +0200
+@@ -1003,6 +1003,7 @@
+ 
+   speed_cycletime_init ();
+ 
++
+   if (!speed_option_cycles_broken && have_cycles && cycles_works_p ())
+     {
+       use_cycles = 1;
+@@ -1015,14 +1016,14 @@
+       cycles_limit = (have_cycles == 1 ? M_2POW32 : M_2POW64) / 2.0
+ 	* speed_cycletime;
+ 
+-      if (have_grus && getrusage_microseconds_p() && ! getrusage_backwards_p())
++      if (0 && have_grus && getrusage_microseconds_p() && ! getrusage_backwards_p())
+ 	{
+ 	  /* this is a good combination */
+ 	  use_grus = 1;
+ 	  supplement_unittime = grus_unittime = 1.0e-6;
+ 	  strcpy (speed_time_string, "CPU cycle counter, supplemented by microsecond getrusage()");
+ 	}
+-      else if (have_cycles == 1)
++      else if (have_cycles != 0)
+ 	{
+ 	  /* When speed_cyclecounter has a limited range, look for something
+ 	     to supplement it. */

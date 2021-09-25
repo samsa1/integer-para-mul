@@ -1,0 +1,11 @@
+--- gmp-impl.h.orig	2021-07-01 09:55:22.556953987 +0200
++++ gmp-impl.h	2021-07-01 09:55:05.980681817 +0200
+@@ -5234,7 +5234,7 @@
+ #define mpn_toom42_mulmid_itch(n) \
+   (3 * (n) + GMP_NUMB_BITS)
+ 
+-#if 0
++#if WANT_OLD_FFT_FULL
+ #define mpn_fft_mul mpn_mul_fft_full
+ #else
+ #define mpn_fft_mul mpn_nussbaumer_mul

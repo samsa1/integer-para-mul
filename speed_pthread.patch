@@ -1,0 +1,35 @@
+--- speed.c.orig	2021-07-09 16:00:03.000000000 +0200
++++ speed.c	2021-07-09 16:04:36.000000000 +0200
+@@ -1079,6 +1079,7 @@
+   printf ("Measure the speed of some routines.\n");
+   printf ("Times are in seconds, accuracy is shown.\n");
+   printf ("\n");
++  printf ("   -n num     set number of threads\n");
+   printf ("   -p num     set precision as number of time units each routine must run\n");
+   printf ("   -s size[-end][,size[-end]]...   sizes to measure\n");
+   printf ("              single sizes or ranges, sep with comma or use multiple -s\n");
+@@ -1160,5 +1161,5 @@
+  for (;;)
+    {
+-      opt = getopt(argc, argv, "a:CcDdEFf:o:p:P:rRs:t:ux:y:w:W:z");
++      opt = getopt(argc, argv, "a:CcDdEFf:n:o:p:P:rRs:t:ux:y:w:W:z");
+      if (opt == EOF)
+        break;
+@@ -1217,6 +1218,17 @@
+             exit (1);
+           }
+         break;
++      case 'n':
++        {
++        int nt = atoi (optarg);
++        if (nt < 1)
++          {
++            fprintf (stderr, "-n num threads must be >= 1\n");
++            exit (1);
++          }
++        gmp_set_num_threads(nt);
++        break;
++        }
+       case 'o':
+         speed_option_set (optarg);
+         break;

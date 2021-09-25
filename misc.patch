@@ -1,0 +1,21 @@
+--- tests/misc.c.origin	2021-07-19 15:46:48.000000000 +0200
++++ tests/misc.c	2021-07-19 15:47:21.000000000 +0200
+@@ -73,14 +73,18 @@
+   setbuf (stdout, NULL);
+   setbuf (stderr, NULL);
+ 
++#if MEMORY_THREAD_SAFE
+   tests_memory_start ();
++#endif
+   tests_rand_start ();
+ }
+ void
+ tests_end (void)
+ {
+   tests_rand_end ();
++#if MEMORY_THREAD_SAFE
+   tests_memory_end ();
++#endif
+ }
+ 
+ static void

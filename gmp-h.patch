@@ -1,0 +1,11 @@
+--- gmp-h.in.origin	2021-07-09 09:44:23.000000000 +0200
++++ gmp-h.in	2021-07-08 17:48:23.000000000 +0200
+@@ -2332,5 +2332,8 @@
+ #define __GNU_MP_VERSION_PATCHLEVEL 1
+ #define __GNU_MP_RELEASE (__GNU_MP_VERSION * 10000 + __GNU_MP_VERSION_MINOR * 100 + __GNU_MP_VERSION_PATCHLEVEL)
+ 
++#define gmp_set_num_threads __gmp_set_num_threads
++__GMP_DECLSPEC void gmp_set_num_threads (int);
++
+ #define __GMP_H__
+ #endif /* __GMP_H__ */

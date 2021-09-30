@@ -66,7 +66,7 @@ see https://www.gnu.org/licenses/.  */
 #define DISP_CEIL 8
 #define DISP_CEIL_FFT 16
 
-#define UNSAFE_THREAD_ALLOCATION
+//#define UNSAFE_THREAD_ALLOCATION
 #ifdef UNSAFE_THREAD_ALLOCATION
 #define ALLOC_LOCK(x) pthread_mutex_lock(x)
 #define ALLOC_UNLOCK(x) pthread_mutex_unlock(x)

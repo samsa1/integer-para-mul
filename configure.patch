@@ -1,0 +1,47 @@
+--- configure.ac.orig	2021-06-15 14:10:50.430786275 +0200
++++ configure.ac	2021-06-15 14:17:43.933695943 +0200
+@@ -254,6 +254,25 @@
+ esac],
+ [enable_minithres=no])
+ 
++# enable OpenMP
++AC_ARG_ENABLE(openmp,
++AC_HELP_STRING([--enable-openmp],
++	[enable OpenMP [default=no]]),
++[case $enableval in
++yes|no) ;;
++*) AC_MSG_ERROR([bad value $enableval for --enable-openmp, need yes or no]) ;;
++esac],
++[enable_openmp=no])
++
++# enable pthread
++AC_ARG_ENABLE(pthread,
++AC_HELP_STRING([--enable-pthread],
++	[enable pthread [default=no]]),
++[case $enableval in
++yes|no) ;;
++*) AC_MSG_ERROR([bad value $enableval for --enable-pthread, need yes or no]) ;;
++esac],
++[enable_pthread=no])
+ 
+ AC_ARG_ENABLE(fake-cpuid,
+ AC_HELP_STRING([--enable-fake-cpuid],[enable GMP_CPU_TYPE faking cpuid [default=no]]),
+@@ -2210,6 +2219,9 @@
+           instrument) cflags="$cflags -finstrument-functions" ;;
+         esac
+ 
++	if test "$enable_openmp" = "yes"; then cflags="$cflags -fopenmp"; fi
++	if test "$enable_pthread" = "yes"; then cflags="$cflags -lhwloc -lpthread"; fi
++
+         GMP_PROG_CC_WORKS($cc $cflags $cppflags,,continue)
+ 
+         # If we're supposed to be using a "long long" for a limb, check that
+@@ -2710,6 +2731,8 @@
+     ;;
+ esac
+ 
++if test "$enable_openmp" = "yes"; then GMP_LDFLAGS="$GMP_LDFLAGS -fopenmp"; fi
++if test "$enable_pthread" = "yes"; then GMP_LDFLAGS="$GMP_LDFLAGS -lhwloc -lpthread"; fi
+ 
+ # Ensure that $CONFIG_SHELL is available for AC_LIBTOOL_SYS_MAX_CMD_LEN.
+ # It's often set already by _LT_AC_PROG_ECHO_BACKSLASH or

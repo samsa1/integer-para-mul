@@ -1,5 +1,5 @@
 
-## How to use this parallel interger multiplication code.
+## How to use this parallel integer multiplication code.
 
 Assume DIR is this directory.
 

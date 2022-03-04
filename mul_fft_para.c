@@ -1008,7 +1008,7 @@ mpn_fft_div_2exp_modF (mp_ptr r, mp_srcptr a, mp_bitcnt_t k, mp_size_t n)
   /* 1/2^k = 2^(2nL-k) mod 2^(n*GMP_NUMB_BITS)+1 */
   /* normalize so that R < 2^(n*GMP_NUMB_BITS)+1 */
   mpn_fft_normalize (r, n);
-}s
+}
 
 /* input: A^[l[k][0]] A^[l[k][1]] ... A^[l[k][K-1]]
    output: K*A[0] K*A[K-1] ... K*A[1].
